@@ -11,11 +11,17 @@ import (
 )
 
 type UUID interface {
+	/**
+	 * 版本
+	 */
 	Version() byte
+	/**
+	 * 变种
+	 */
 	Variant() byte
 	String() string
 	Bytes() []byte
-	Equal(u UUID) bool
+	Equals(u UUID) bool
 }
 
 type _SUUID struct {
@@ -38,7 +44,7 @@ func (s *_SUUID) Bytes() []byte {
 	return s._s.Bytes()
 }
 
-func (s *_SUUID) Equal(u UUID) bool {
+func (s *_SUUID) Equals(u UUID) bool {
 	if s1, ok := u.(*_SUUID); ok {
 		return suuid.Equal(s._s, s1._s)
 	}
@@ -46,10 +52,7 @@ func (s *_SUUID) Equal(u UUID) bool {
 }
 
 func RandomUUID() (UUID, error) {
-	u4, err := suuid.NewV4()
-	if err != nil {
-		return nil, err
-	}
+	u4 := suuid.NewV4()
 	return &_SUUID{_s: u4}, nil
 }
 

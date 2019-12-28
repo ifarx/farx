@@ -11,4 +11,7 @@ package service
  *  所有服务都应该实现该接口
  */
 type Component interface {
+	Init() error
+	Startup() error
+	Shutdown() error
 }

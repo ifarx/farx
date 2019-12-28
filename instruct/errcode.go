@@ -10,7 +10,7 @@ import "strconv"
 type Errcode interface {
 	Code() int32
 	Message() string
-	Succ() bool
+	Ok() bool
 	String() string
 	Error() string
 }
@@ -25,14 +25,13 @@ type errCode struct {
 
 func (e *errCode) Code() int32 {
 	return e._c
-
 }
 
 func (e *errCode) Message() string {
 	return e._m
 }
 
-func (e *errCode) Succ() bool {
+func (e *errCode) Ok() bool {
 	return e._c == 0
 }
 

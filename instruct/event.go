@@ -15,6 +15,6 @@ type EventListener func(event Event)
 
 type EventTarget interface {
 	DispatchEvent(event Event) error
-	AddEventListener(listener EventListener) error
-	RemoveEventListener(listener EventListener) error
+	AddEventListener(typ string, listener EventListener) error
+	RemoveEventListener(typ string, listener EventListener) error
 }

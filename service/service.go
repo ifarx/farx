@@ -5,6 +5,10 @@
  */
 package service
 
+import "src/instruct"
+
 type Service interface {
 	Component
+	Magic() *instruct.Magic
+	Version() *instruct.Version
 }

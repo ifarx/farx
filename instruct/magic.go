@@ -17,7 +17,7 @@ func NewMagic(b1, b2, b3, b4 byte) *Magic {
 	return &Magic{bytes: [4]byte{b1, b2, b3, b4}}
 }
 
-func (m *Magic) Equal(m1 *Magic) bool {
+func (m *Magic) Equals(m1 *Magic) bool {
 	return m.bytes[0] == m1.bytes[0] &&
 		m.bytes[1] == m1.bytes[1] &&
 		m.bytes[2] == m1.bytes[2] &&

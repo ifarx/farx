@@ -45,7 +45,7 @@ func (v *Version) String() string {
 	return strconv.FormatUint(uint64(v.major), 10) + "." + strconv.FormatUint(uint64(v.minor), 10) + "." + strconv.FormatUint(uint64(v.revision), 10)
 }
 
-func (v *Version) Equal(v1 *Version) bool {
+func (v *Version) Equals(v1 *Version) bool {
 	return (v.major == v1.major) &&
 		(v.minor == v1.minor) &&
 		(v.revision == v1.revision) &&
