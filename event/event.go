@@ -96,11 +96,13 @@ func NewEventListeners() *EventListeners {
 	return &EventListeners{_els: make([]EventListener, 0, 10)}
 }
 
-type SimpleEventTarget struct {
+/**
+ */
+type EventTargetAgent struct {
 	_lamp map[EventType]*EventListeners
 }
 
-func (elt *SimpleEventTarget) DispatchEvent(event Event) EventError {
+func (elt *EventTargetAgent) DispatchEvent(event Event) EventError {
 	els := elt._lamp[event.Type()]
 	if els == nil {
 		return nil
@@ -108,7 +110,7 @@ func (elt *SimpleEventTarget) DispatchEvent(event Event) EventError {
 	return els.ForeachEvent(event)
 }
 
-func (elt *SimpleEventTarget) AddEventListener(typ EventType, listener EventListener) EventError {
+func (elt *EventTargetAgent) AddEventListener(typ EventType, listener EventListener) EventError {
 	els := elt._lamp[typ]
 	if els == nil {
 		els = NewEventListeners()
@@ -121,7 +123,7 @@ func (elt *SimpleEventTarget) AddEventListener(typ EventType, listener EventList
 	return nil
 }
 
-func (elt *SimpleEventTarget) RemoveEventListener(typ EventType, listener EventListener) EventError {
+func (elt *EventTargetAgent) RemoveEventListener(typ EventType, listener EventListener) EventError {
 	els := elt._lamp[typ]
 	if els != nil {
 		remove := els.RemoveEventListener(listener)
@@ -132,6 +134,6 @@ func (elt *SimpleEventTarget) RemoveEventListener(typ EventType, listener EventL
 	return nil
 }
 
-func NewSimpleEventTarget() *SimpleEventTarget {
-	return &SimpleEventTarget{_lamp: make(map[EventType]*EventListeners)}
+func NewEventTargetAgent() *EventTargetAgent {
+	return &EventTargetAgent{_lamp: make(map[EventType]*EventListeners)}
 }
